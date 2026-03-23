@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="system-bar">
+    <div>
+        <span class="status-dot"></span>
+        <span>SISTEMA OPERATIVO</span>
+        &nbsp;|&nbsp;
+        <span>LegacyReportEngine/2.1.3</span>
+    </div>
+    <div class="system-bar-right">
+        <span id="sys-uptime">UP 5d 00:00</span>
+        &nbsp;|&nbsp;
+        <span id="sys-clock" class="text-mono">00:00:00</span>
+    </div>
+</div>
+
+<nav class="main-nav">
+    <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">LR</div>
+        <div>
+            <div class="nav-brand-text">LegacyReport</div>
+            <span class="nav-brand-version">v2.1.3</span>
+        </div>
+    </a>
+    <a href="/"        class="nav-link">Dashboard</a>
+    <a href="/reports" class="nav-link active">Import XML</a>
+    <a href="/login"   class="nav-link">Accesso</a>
+</nav>
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <div>
+            <div class="page-label">// Modulo importazione</div>
+            <h1 class="page-title">Importazione Report XML</h1>
+            <p class="page-subtitle">Carica un file XML conforme allo schema LegacyReport per l'elaborazione.</p>
+        </div>
+        <span class="badge badge-amber">XML PARSER v1.4</span>
+    </div>
+
+    <div class="grid-2">
+
+        <!-- Upload form -->
+        <div>
+            <% if (error) { %>
+            <div class="alert alert-error">
+                <span class="alert-prefix">[ERR]</span>
+                <span><%= error %></span>
+            </div>
+            <% } %>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-header-title">Carica file</span>
+                    <span class="card-header-badge">MAX 2MB</span>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/reports/upload" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="upload-zone" id="upload-zone">
+                                <input type="file" name="reportFile" accept=".xml">
+                                <div class="upload-icon">⬆</div>
+                                <div class="upload-label">Trascina il file XML o clicca per selezionare</div>
+                                <div class="upload-hint">Formati supportati: .xml — Dimensione max: 2MB</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">
+                            Elabora Report →
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Schema card -->
+            <div class="card mt-24">
+                <div class="card-header">
+                    <span class="card-header-title">Schema XML atteso</span>
+                    <span class="card-header-badge">v1.4</span>
+                </div>
+                <div class="card-body" style="padding:0">
+                    <div class="terminal" style="font-size:11px; padding:16px 20px">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;report&gt;
+  &lt;title&gt;Titolo del report&lt;/title&gt;
+  &lt;author&gt;Nome Autore&lt;/author&gt;
+  &lt;date&gt;15/01/2024&lt;/date&gt;
+  &lt;body&gt;
+    Corpo del report...
+  &lt;/body&gt;
+&lt;/report&gt;</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report preview -->
+        <div>
+            <% if (reportData) { %>
+            <div class="alert alert-success">
+                <span class="alert-prefix">[OK]</span>
+                <span>Report importato con successo.</span>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-header-title">Anteprima report</span>
+                    <span class="badge badge-green">PARSED</span>
+                </div>
+                <div class="card-body" style="padding:0">
+                    <div class="report-preview">
+                        <div class="report-preview-meta">
+                            <div class="report-preview-meta-item">
+                                <div class="report-preview-meta-label">Titolo</div>
+                                <div class="report-preview-meta-value"><%= reportData.title %></div>
+                            </div>
+                            <div class="report-preview-meta-item">
+                                <div class="report-preview-meta-label">Autore</div>
+                                <div class="report-preview-meta-value"><%= reportData.author %></div>
+                            </div>
+                            <div class="report-preview-meta-item">
+                                <div class="report-preview-meta-label">Data</div>
+                                <div class="report-preview-meta-value"><%= reportData.date %></div>
+                            </div>
+                        </div>
+                        <div class="report-preview-body"><%= reportData.body %></div>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-header-title">Anteprima report</span>
+                </div>
+                <div class="card-body">
+                    <div style="text-align:center; padding:40px 0; color: var(--text-dim); font-family:var(--mono); font-size:12px">
+                        <div style="font-size:32px; margin-bottom:12px; opacity:0.3">⬜</div>
+                        Nessun file caricato.<br>
+                        Il risultato del parsing apparirà qui.
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="main-footer">
+    <span>LegacyReportEngine v2.1.3 &copy; 2024 Legacy Corp.</span>
+    <span>Apache/2.2.31 (Ubuntu)</span>
+</footer>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

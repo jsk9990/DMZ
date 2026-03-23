@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .rendered-output {
+            background: var(--bg-primary);
+            border: 1px solid var(--accent-green);
+            border-left: 3px solid var(--accent-green);
+            padding: 20px;
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            box-shadow: 0 0 20px rgba(0,232,122,0.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="system-bar">
+    <div>
+        <span class="status-dot"></span>
+        <span>PANNELLO AMMINISTRAZIONE</span>
+        &nbsp;|&nbsp;
+        <span>Utente: <strong style="color:var(--accent-green)"><%= user %></strong></span>
+        &nbsp;|&nbsp;
+        <span>Ruolo: ADMIN</span>
+    </div>
+    <div class="system-bar-right">
+        <span id="sys-uptime">UP 5d 00:00</span>
+        &nbsp;|&nbsp;
+        <span id="sys-clock" class="text-mono">00:00:00</span>
+    </div>
+</div>
+
+<nav class="main-nav">
+    <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">LR</div>
+        <div>
+            <div class="nav-brand-text">LegacyReport</div>
+            <span class="nav-brand-version">v2.1.3</span>
+        </div>
+    </a>
+    <a href="/"                       class="nav-link">Dashboard</a>
+    <a href="/reports"                class="nav-link">Import XML</a>
+    <a href="/management/dashboard"   class="nav-link active">Management</a>
+</nav>
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <div>
+            <div class="page-label">// Area riservata — accesso admin</div>
+            <h1 class="page-title">Management Dashboard</h1>
+            <p class="page-subtitle">Strumenti di amministrazione del sistema. Accesso monitorato.</p>
+        </div>
+        <div class="flex gap-8">
+            <span class="badge badge-red">ADMIN</span>
+            <span class="badge badge-amber">RISERVATO</span>
+        </div>
+    </div>
+
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="admin-sidebar-header">// Funzioni admin</div>
+            <div class="admin-sidebar-item">
+                <span class="admin-sidebar-item-label">Template Email</span>
+                <span class="badge badge-green">ATTIVO</span>
+            </div>
+            <div class="admin-sidebar-item">
+                <span class="admin-sidebar-item-label">Gestione Utenti</span>
+                <span class="badge badge-amber">WIP</span>
+            </div>
+            <div class="admin-sidebar-item">
+                <span class="admin-sidebar-item-label">Backup Dati</span>
+                <span class="badge badge-amber">WIP</span>
+            </div>
+            <div class="admin-sidebar-item">
+                <span class="admin-sidebar-item-label">Log Sistema</span>
+                <span class="badge badge-amber">WIP</span>
+            </div>
+            <div class="admin-sidebar-item">
+                <span class="admin-sidebar-item-label">Config Server</span>
+                <span class="badge badge-red">LOCKED</span>
+            </div>
+        </div>
+
+        <!-- Main panel -->
+        <div>
+
+            <% if (error) { %>
+            <div class="alert alert-error">
+                <span class="alert-prefix">[ERR]</span>
+                <span><%= error %></span>
+            </div>
+            <% } %>
+
+            <!-- Template form (SSTI) -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-header-title">Personalizzazione Template Email</span>
+                    <span class="card-header-badge">EJS RENDERER</span>
+                </div>
+                <div class="card-body">
+                    <form
+                        method="POST"
+                        action="/management/dashboard/render-template"
+                        id="template-form"
+                        onsubmit="injectAuth(event)"
+                    >
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Destinatario <span class="required">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="recipient"
+                                    class="form-control"
+                                    placeholder="cliente@esempio.com"
+                                    value="cliente@legacy-corp.it"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Oggetto <span class="required">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    class="form-control"
+                                    placeholder="Oggetto email"
+                                    value="Notifica Report Disponibile"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                Corpo del messaggio <span class="required">*</span>
+                            </label>
+                            <textarea
+                                name="template_body"
+                                class="form-control"
+                                rows="6"
+                                placeholder="Il tuo report è disponibile..."
+                            >Il report richiesto è ora disponibile nel sistema.
+Accedere al portale per visualizzarlo.</textarea>
+                            <div class="form-hint">
+                                // Supporta markup HTML. Il template viene renderizzato lato server.
+                            </div>
+                        </div>
+                        <div class="flex gap-8">
+                            <button type="submit" class="btn btn-primary">
+                                Genera Anteprima →
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Output rendering -->
+            <% if (output) { %>
+            <div class="card mt-24">
+                <div class="card-header">
+                    <span class="card-header-title">Output rendering</span>
+                    <span class="badge badge-green">RENDERED</span>
+                </div>
+                <div class="card-body">
+                    <div class="rendered-output"><%- output %></div>
+                </div>
+            </div>
+            <% } %>
+
+            <!-- Info system -->
+            <div class="card mt-24">
+                <div class="card-header">
+                    <span class="card-header-title">Informazioni runtime</span>
+                </div>
+                <div class="card-body" style="padding:0">
+                    <table class="data-table">
+                        <tbody>
+                            <tr>
+                                <td style="color:var(--text-dim); width:160px">Engine</td>
+                                <td>LegacyReportEngine v2.1.3</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--text-dim)">Template engine</td>
+                                <td>EJS (Embedded JavaScript)</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--text-dim)">Auth method</td>
+                                <td>JWT RS256 / Bearer Token</td>
+                            </tr>
+                            <tr>
+                                <td style="color:var(--text-dim)">Utente corrente</td>
+                                <td style="color:var(--accent-green)"><%= user %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <span>LegacyReportEngine v2.1.3 — Pannello Amministrazione</span>
+    <span>Accesso riservato — Attività monitorate</span>
+</footer>
+
+<script src="/js/dashboard.js"></script>
+<script>
+// Il form deve inviare il token JWT nell'header Authorization
+// Questa funzione intercetta il submit e invia la richiesta via fetch
+// mantenendo il token dalla sessionStorage
+function injectAuth(e) {
+    e.preventDefault();
+    const token = sessionStorage.getItem('jwt_token');
+    if (!token) {
+        alert('Token JWT non trovato in sessione.\nRieffettuare il login e copiare il token manualmente nelle richieste.');
+        return;
+    }
+    const form = document.getElementById('template-form');
+    const data = new FormData(form);
+    const body = new URLSearchParams(data).toString();
+
+    fetch('/management/dashboard/render-template', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer ' + token
+        },
+        body: body
+    })
+    .then(r => r.text())
+    .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+    });
+}
+
+// Salva token se passato via query param (per demo)
+const params = new URLSearchParams(window.location.search);
+if (params.get('token')) {
+    sessionStorage.setItem('jwt_token', params.get('token'));
+}
+</script>
+</body>
+</html>

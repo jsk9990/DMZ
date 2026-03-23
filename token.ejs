@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="system-bar">
+    <div>
+        <span class="status-dot"></span>
+        <span>SISTEMA OPERATIVO</span>
+        &nbsp;|&nbsp;
+        <span>LegacyReportEngine/2.1.3</span>
+    </div>
+    <div class="system-bar-right">
+        <span id="sys-clock" class="text-mono">00:00:00</span>
+    </div>
+</div>
+
+<nav class="main-nav">
+    <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">LR</div>
+        <div>
+            <div class="nav-brand-text">LegacyReport</div>
+            <span class="nav-brand-version">v2.1.3</span>
+        </div>
+    </a>
+    <a href="/"        class="nav-link">Dashboard</a>
+    <a href="/reports" class="nav-link">Import XML</a>
+    <a href="/login"   class="nav-link active">Accesso</a>
+</nav>
+
+<div class="page-wrapper" style="max-width:760px">
+
+    <div class="page-header">
+        <div>
+            <div class="page-label">// Autenticazione completata</div>
+            <h1 class="page-title">Token emesso</h1>
+            <p class="page-subtitle">Benvenuto, <strong><%= username %></strong>. Conserva il token per le richieste successive.</p>
+        </div>
+        <span class="badge badge-green">AUTH OK</span>
+    </div>
+
+    <div class="alert alert-success">
+        <span class="alert-prefix">[OK]</span>
+        <span>JWT RS256 generato con successo. Valido per 2 ore.</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-header-title">Bearer Token</span>
+            <button class="copy-btn" data-copy="token-value">COPIA</button>
+        </div>
+        <div class="card-body" style="padding:0">
+            <div class="token-box" id="token-value"><%= token %></div>
+        </div>
+    </div>
+
+    <div class="card mt-24">
+        <div class="card-header">
+            <span class="card-header-title">Come utilizzare il token</span>
+        </div>
+        <div class="card-body">
+            <p class="text-dim" style="font-family:var(--mono); font-size:12px; margin-bottom:16px">
+                Includere il token nell'header di ogni richiesta autenticata:
+            </p>
+            <div class="terminal">Authorization: Bearer <span style="color:var(--accent-amber)"><%= token.substring(0,40) %>...</span></div>
+            <hr class="divider">
+            <p class="text-dim" style="font-family:var(--mono); font-size:11px">
+                Il token contiene i tuoi claims: <strong style="color:var(--text-secondary)">user: <%= username %>, role: user</strong><br>
+                Algoritmo di firma: <strong style="color:var(--text-secondary)">RS256</strong><br>
+                Chiave pubblica di verifica: <a href="/.well-known/jwks.json" style="color:var(--accent-green)">/.well-known/jwks.json</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-24 flex gap-8">
+        <a href="/" class="btn btn-secondary">← Dashboard</a>
+        <a href="/reports" class="btn btn-primary">Importa Report</a>
+    </div>
+
+</div>
+
+<footer class="main-footer">
+    <span>LegacyReportEngine v2.1.3 &copy; 2024 Legacy Corp.</span>
+    <span>Apache/2.2.31 (Ubuntu)</span>
+</footer>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

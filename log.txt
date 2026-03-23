@@ -1,0 +1,403 @@
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm warn deprecated gauge@3.0.2: This package is no longer supported.
+npm warn deprecated multer@1.4.5-lts.2: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
+npm warn deprecated tar@6.2.1: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm error code 1
+npm error path /opt/app/legacy-report/node_modules/libxmljs2
+npm error command failed
+npm error command sh -c node-pre-gyp install --fallback-to-build --loglevel http
+npm error make: Entering directory '/opt/app/legacy-report/node_modules/libxmljs2/build'
+npm error   CXX(target) Release/obj.target/xmljs/src/libxmljs.o
+npm error make: Leaving directory '/opt/app/legacy-report/node_modules/libxmljs2/build'
+npm error Failed to execute '/usr/bin/node /usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --loglevel=http --module=/opt/app/legacy-report/node_modules/libxmljs2/build/Release/xmljs.node --module_name=xmljs --module_path=/opt/app/legacy-report/node_modules/libxmljs2/build/Release --napi_version=10 --node_abi_napi=napi --napi_build_version=0 --node_napi_label=node-v137' (1)
+npm error (node:2063) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+npm error (Use `node --trace-deprecation ...` to show where the warning was created)
+npm error (node:2063) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+npm error node-pre-gyp http GET https://github.com/marudor/libxmljs2/releases/download/v0.31.0/node-v137-linux-x64-glibc.tar.gz
+npm error node-pre-gyp ERR! install response status 404 Not Found on https://github.com/marudor/libxmljs2/releases/download/v0.31.0/node-v137-linux-x64-glibc.tar.gz 
+npm error node-pre-gyp WARN Pre-built binaries not installable for libxmljs2@0.31.0 and node@24.13.1 (node-v137 ABI, glibc) (falling back to source compile with node-gyp) 
+npm error node-pre-gyp WARN Hit error response status 404 Not Found on https://github.com/marudor/libxmljs2/releases/download/v0.31.0/node-v137-linux-x64-glibc.tar.gz 
+npm error gyp info it worked if it ends with ok
+npm error gyp info using node-gyp@12.1.0
+npm error gyp info using node@24.13.1 | linux | x64
+npm error gyp info ok 
+npm error (node:2086) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+npm error (Use `node --trace-deprecation ...` to show where the warning was created)
+npm error In file included from ../../nan/nan_callbacks.h:87,
+npm error                  from ../../nan/nan.h:180,
+npm error                  from ../src/libxmljs.h:5,
+npm error                  from ../src/libxmljs.cc:7:
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::FunctionCallbackWrapper(const v8::FunctionCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:175:53: error: no matching function for call to ‘Nan::FunctionCallbackInfo<v8::Value>::FunctionCallbackInfo(const v8::FunctionCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   175 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:175:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:98:19: note: candidate 1: ‘Nan::FunctionCallbackInfo<T>::FunctionCallbackInfo(const v8::FunctionCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error    98 |   explicit inline FunctionCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:100:28: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   100 |     , v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::GetterCallbackWrapper(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:188:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Value>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   188 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:188:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::SetterCallbackWrapper(v8::Local<v8::Name>, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<void>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:205:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<void>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<void>&, v8::Local<v8::Data>)’
+npm error   205 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:205:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = void]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::PropertyGetterCallbackWrapper(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:260:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Value>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   260 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:260:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::PropertySetterCallbackWrapper(v8::Local<v8::Name>, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:278:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Value>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   278 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:278:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::PropertyEnumeratorCallbackWrapper(const v8::PropertyCallbackInfo<v8::Array>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:296:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Array>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Array>&, v8::Local<v8::Data>)’
+npm error   296 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:296:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Array]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::PropertyDeleterCallbackWrapper(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Boolean>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:313:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Boolean>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Boolean>&, v8::Local<v8::Data>)’
+npm error   313 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:313:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Boolean]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::PropertyQueryCallbackWrapper(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Integer>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:330:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Integer>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Integer>&, v8::Local<v8::Data>)’
+npm error   330 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:330:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Integer]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::IndexGetterCallbackWrapper(uint32_t, const v8::PropertyCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:434:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Value>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   434 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:434:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::IndexSetterCallbackWrapper(uint32_t, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:452:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Value>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Value>&, v8::Local<v8::Data>)’
+npm error   452 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:452:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Value]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::IndexEnumeratorCallbackWrapper(const v8::PropertyCallbackInfo<v8::Array>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:470:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Array>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Array>&, v8::Local<v8::Data>)’
+npm error   470 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:470:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Array]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::IndexDeleterCallbackWrapper(uint32_t, const v8::PropertyCallbackInfo<v8::Boolean>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:486:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Boolean>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Boolean>&, v8::Local<v8::Data>)’
+npm error   486 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:486:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Boolean]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan_callbacks_12_inl.h: In function ‘void Nan::imp::IndexQueryCallbackWrapper(uint32_t, const v8::PropertyCallbackInfo<v8::Integer>&)’:
+npm error ../../nan/nan_callbacks_12_inl.h:502:53: error: no matching function for call to ‘Nan::PropertyCallbackInfo<v8::Integer>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<v8::Integer>&, v8::Local<v8::Data>)’
+npm error   502 |       cbinfo(info, obj->GetInternalField(kDataIndex));
+npm error       |                                                     ^
+npm error ../../nan/nan_callbacks_12_inl.h:502:53: note: there is 1 candidate
+npm error ../../nan/nan_callbacks_12_inl.h:140:19: note: candidate 1: ‘Nan::PropertyCallbackInfo<T>::PropertyCallbackInfo(const v8::PropertyCallbackInfo<T>&, v8::Local<v8::Value>) [with T = v8::Integer]’
+npm error   140 |   explicit inline PropertyCallbackInfo(
+npm error       |                   ^~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan_callbacks_12_inl.h:142:34: note: no known conversion for argument 2 from ‘Local<v8::Data>’ to ‘Local<v8::Value>’
+npm error   142 |     , const v8::Local<v8::Value> data) :
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+npm error ../../nan/nan.h: At global scope:
+npm error ../../nan/nan.h:206:40: error: expected template-name before ‘<’ token [-Wtemplate-body]
+npm error   206 |     public v8::CopyablePersistentTraits<T> {};
+npm error       |                                        ^
+npm error ../../nan/nan.h:206:40: error: expected ‘{’ before ‘<’ token
+npm error ../../nan/nan.h: In function ‘bool Nan::IdleNotification(int)’:
+npm error ../../nan/nan.h:686:39: error: ‘class v8::Isolate’ has no member named ‘IdleNotificationDeadline’
+npm error   686 |     return v8::Isolate::GetCurrent()->IdleNotificationDeadline(
+npm error       |                                       ^~~~~~~~~~~~~~~~~~~~~~~~
+npm error ../../nan/nan.h: In constructor ‘Nan::Utf8String::Utf8String(v8::Local<v8::Value>)’:
+npm error ../../nan/nan.h:1152:36: warning: ‘int v8::String::WriteUtf8(v8::Isolate*, char*, int, int*, int) const’ is deprecated: Use WriteUtf8V2 instead. [-Wdeprecated-declarations]
+npm error  1152 |         length_ = string->WriteUtf8(v8::Isolate::GetCurrent(), str_,
+npm error       |                   ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+npm error  1153 |                                     static_cast<int>(len), 0, flags);
+npm error       |                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+npm error In file included from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-object.h:12,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-array-buffer.h:14,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8.h:24,
+npm error                  from ../src/libxmljs.cc:3:
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-primitive.h:212:7: note: declared here
+npm error   212 |   int WriteUtf8(Isolate* isolate, char* buffer, int length = -1,
+npm error       |       ^~~~~~~~~
+npm error ../../nan/nan.h: In function ‘v8::Local<v8::Value> Nan::Encode(const void*, size_t, Encoding)’:
+npm error ../../nan/nan.h:2346:24: warning: ‘v8::Local<v8::Value> node::Encode(v8::Isolate*, const uint16_t*, size_t)’ is deprecated: Use TryEncode(...) instead [-Wdeprecated-declarations]
+npm error  2346 |     return node::Encode(
+npm error       |            ~~~~~~~~~~~~^
+npm error  2347 |         isolate
+npm error       |         ~~~~~~~         
+npm error  2348 |       , reinterpret_cast<const uint16_t *>(buf)
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+npm error  2349 |       , len / 2);
+npm error       |       ~~~~~~~~~~        
+npm error In file included from ../../nan/nan.h:60:
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:1188:50: note: declared here
+npm error  1188 |                 NODE_EXTERN v8::Local<v8::Value> Encode(v8::Isolate* isolate,
+npm error       |                                                  ^~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:116:42: note: in definition of macro ‘NODE_DEPRECATED’
+npm error   116 |     __attribute__((deprecated(message))) declarator
+npm error       |                                          ^~~~~~~~~~
+npm error ../../nan/nan.h:2351:24: warning: ‘v8::Local<v8::Value> node::Encode(v8::Isolate*, const char*, size_t, encoding)’ is deprecated: Use TryEncode(...) instead [-Wdeprecated-declarations]
+npm error  2351 |     return node::Encode(
+npm error       |            ~~~~~~~~~~~~^
+npm error  2352 |         isolate
+npm error       |         ~~~~~~~         
+npm error  2353 |       , reinterpret_cast<const char *>(buf)
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+npm error  2354 |       , len
+npm error       |       ~~~~~             
+npm error  2355 |       , node_enc);
+npm error       |       ~~~~~~~~~~~       
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:1180:38: note: declared here
+npm error  1180 |     NODE_EXTERN v8::Local<v8::Value> Encode(v8::Isolate* isolate,
+npm error       |                                      ^~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:116:42: note: in definition of macro ‘NODE_DEPRECATED’
+npm error   116 |     __attribute__((deprecated(message))) declarator
+npm error       |                                          ^~~~~~~~~~
+npm error ../../nan/nan.h: In function ‘void Nan::SetAccessor(v8::Local<v8::ObjectTemplate>, v8::Local<v8::String>, GetterCallback, SetterCallback, v8::Local<v8::Value>, v8::AccessControl, v8::PropertyAttribute, imp::Sig)’:
+npm error ../../nan/nan.h:2546:8: error: ‘class v8::ObjectTemplate’ has no member named ‘SetAccessor’
+npm error  2546 |   tpl->SetAccessor(
+npm error       |        ^~~~~~~~~~~
+npm error ../../nan/nan.h: In function ‘void Nan::SetAccessor(v8::Local<v8::ObjectTemplate>, v8::Local<v8::String>, GetterCallback, SetterCallback, v8::Local<v8::Value>, v8::AccessControl, v8::PropertyAttribute)’:
+npm error ../../nan/nan.h:2592:8: error: ‘class v8::ObjectTemplate’ has no member named ‘SetAccessor’
+npm error  2592 |   tpl->SetAccessor(
+npm error       |        ^~~~~~~~~~~
+npm error ../../nan/nan.h: In function ‘bool Nan::SetAccessor(v8::Local<v8::Object>, v8::Local<v8::String>, GetterCallback, SetterCallback, v8::Local<v8::Value>, v8::AccessControl, v8::PropertyAttribute)’:
+npm error ../../nan/nan.h:2636:15: error: ‘class v8::Object’ has no member named ‘SetAccessor’
+npm error  2636 |   return obj->SetAccessor(
+npm error       |               ^~~~~~~~~~~
+npm error ../../nan/nan.h: In function ‘void Nan::SetNamedPropertyHandler(v8::Local<v8::ObjectTemplate>, PropertyGetterCallback, PropertySetterCallback, PropertyQueryCallback, PropertyDeleterCallback, PropertyEnumeratorCallback, v8::Local<v8::Value>)’:
+npm error ../../nan/nan.h:2713:7: error: invalid conversion from ‘Nan::imp::NativePropertyGetter’ {aka ‘void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Value>&)’} to ‘v8::NamedPropertyGetterCallback’ {aka ‘v8::Intercepted (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Value>&)’} [-fpermissive]
+npm error  2713 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |       ^~~~~~~
+npm error       |       |
+npm error       |       Nan::imp::NativePropertyGetter {aka void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Value>&)}
+npm error In file included from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-function.h:15,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8.h:33:
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:792:35: note: initializing argument 1 of ‘v8::NamedPropertyHandlerConfiguration::NamedPropertyHandlerConfiguration(v8::NamedPropertyGetterCallback, v8::NamedPropertySetterCallback, v8::NamedPropertyQueryCallback, v8::NamedPropertyDeleterCallback, v8::NamedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   792 |       NamedPropertyGetterCallback getter,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+npm error ../../nan/nan.h:2713:16: error: invalid conversion from ‘Nan::imp::NativePropertySetter’ {aka ‘void (*)(v8::Local<v8::Name>, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)’} to ‘v8::NamedPropertySetterCallback’ {aka ‘v8::Intercepted (*)(v8::Local<v8::Name>, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<void>&)’} [-fpermissive]
+npm error  2713 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                ^~~~~~~
+npm error       |                |
+npm error       |                Nan::imp::NativePropertySetter {aka void (*)(v8::Local<v8::Name>, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:793:35: note: initializing argument 2 of ‘v8::NamedPropertyHandlerConfiguration::NamedPropertyHandlerConfiguration(v8::NamedPropertyGetterCallback, v8::NamedPropertySetterCallback, v8::NamedPropertyQueryCallback, v8::NamedPropertyDeleterCallback, v8::NamedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   793 |       NamedPropertySetterCallback setter = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+npm error ../../nan/nan.h:2713:25: error: invalid conversion from ‘Nan::imp::NativePropertyQuery’ {aka ‘void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Integer>&)’} to ‘v8::NamedPropertyQueryCallback’ {aka ‘v8::Intercepted (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Integer>&)’} [-fpermissive]
+npm error  2713 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                         ^~~~~~
+npm error       |                         |
+npm error       |                         Nan::imp::NativePropertyQuery {aka void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Integer>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:794:34: note: initializing argument 3 of ‘v8::NamedPropertyHandlerConfiguration::NamedPropertyHandlerConfiguration(v8::NamedPropertyGetterCallback, v8::NamedPropertySetterCallback, v8::NamedPropertyQueryCallback, v8::NamedPropertyDeleterCallback, v8::NamedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   794 |       NamedPropertyQueryCallback query = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+npm error ../../nan/nan.h:2713:33: error: invalid conversion from ‘void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Boolean>&)’ to ‘v8::NamedPropertyDeleterCallback’ {aka ‘v8::Intercepted (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Boolean>&)’} [-fpermissive]
+npm error  2713 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                                 ^~~~~~~~
+npm error       |                                 |
+npm error       |                                 void (*)(v8::Local<v8::Name>, const v8::PropertyCallbackInfo<v8::Boolean>&)
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:795:36: note: initializing argument 4 of ‘v8::NamedPropertyHandlerConfiguration::NamedPropertyHandlerConfiguration(v8::NamedPropertyGetterCallback, v8::NamedPropertySetterCallback, v8::NamedPropertyQueryCallback, v8::NamedPropertyDeleterCallback, v8::NamedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   795 |       NamedPropertyDeleterCallback deleter = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+npm error ../../nan/nan.h: In function ‘void Nan::SetIndexedPropertyHandler(v8::Local<v8::ObjectTemplate>, IndexGetterCallback, IndexSetterCallback, IndexQueryCallback, IndexDeleterCallback, IndexEnumeratorCallback, v8::Local<v8::Value>)’:
+npm error ../../nan/nan.h:2783:7: error: invalid conversion from ‘Nan::imp::NativeIndexGetter’ {aka ‘void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Value>&)’} to ‘v8::IndexedPropertyGetterCallbackV2’ {aka ‘v8::Intercepted (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Value>&)’} [-fpermissive]
+npm error  2783 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |       ^~~~~~~
+npm error       |       |
+npm error       |       Nan::imp::NativeIndexGetter {aka void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Value>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:871:39: note: initializing argument 1 of ‘v8::IndexedPropertyHandlerConfiguration::IndexedPropertyHandlerConfiguration(v8::IndexedPropertyGetterCallbackV2, v8::IndexedPropertySetterCallbackV2, v8::IndexedPropertyQueryCallbackV2, v8::IndexedPropertyDeleterCallbackV2, v8::IndexedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   871 |       IndexedPropertyGetterCallbackV2 getter = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+npm error ../../nan/nan.h:2783:16: error: invalid conversion from ‘Nan::imp::NativeIndexSetter’ {aka ‘void (*)(unsigned int, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)’} to ‘v8::IndexedPropertySetterCallbackV2’ {aka ‘v8::Intercepted (*)(unsigned int, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<void>&)’} [-fpermissive]
+npm error  2783 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                ^~~~~~~
+npm error       |                |
+npm error       |                Nan::imp::NativeIndexSetter {aka void (*)(unsigned int, v8::Local<v8::Value>, const v8::PropertyCallbackInfo<v8::Value>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:872:39: note: initializing argument 2 of ‘v8::IndexedPropertyHandlerConfiguration::IndexedPropertyHandlerConfiguration(v8::IndexedPropertyGetterCallbackV2, v8::IndexedPropertySetterCallbackV2, v8::IndexedPropertyQueryCallbackV2, v8::IndexedPropertyDeleterCallbackV2, v8::IndexedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   872 |       IndexedPropertySetterCallbackV2 setter = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+npm error ../../nan/nan.h:2783:25: error: invalid conversion from ‘Nan::imp::NativeIndexQuery’ {aka ‘void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Integer>&)’} to ‘v8::IndexedPropertyQueryCallbackV2’ {aka ‘v8::Intercepted (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Integer>&)’} [-fpermissive]
+npm error  2783 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                         ^~~~~~
+npm error       |                         |
+npm error       |                         Nan::imp::NativeIndexQuery {aka void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Integer>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:873:38: note: initializing argument 3 of ‘v8::IndexedPropertyHandlerConfiguration::IndexedPropertyHandlerConfiguration(v8::IndexedPropertyGetterCallbackV2, v8::IndexedPropertySetterCallbackV2, v8::IndexedPropertyQueryCallbackV2, v8::IndexedPropertyDeleterCallbackV2, v8::IndexedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   873 |       IndexedPropertyQueryCallbackV2 query = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+npm error ../../nan/nan.h:2783:33: error: invalid conversion from ‘Nan::imp::NativeIndexDeleter’ {aka ‘void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Boolean>&)’} to ‘v8::IndexedPropertyDeleterCallbackV2’ {aka ‘v8::Intercepted (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Boolean>&)’} [-fpermissive]
+npm error  2783 |       getter_, setter_, query_, deleter_, enumerator_, obj));
+npm error       |                                 ^~~~~~~~
+npm error       |                                 |
+npm error       |                                 Nan::imp::NativeIndexDeleter {aka void (*)(unsigned int, const v8::PropertyCallbackInfo<v8::Boolean>&)}
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-template.h:874:40: note: initializing argument 4 of ‘v8::IndexedPropertyHandlerConfiguration::IndexedPropertyHandlerConfiguration(v8::IndexedPropertyGetterCallbackV2, v8::IndexedPropertySetterCallbackV2, v8::IndexedPropertyQueryCallbackV2, v8::IndexedPropertyDeleterCallbackV2, v8::IndexedPropertyEnumeratorCallback, v8::Local<v8::Value>, v8::PropertyHandlerFlags)’
+npm error   874 |       IndexedPropertyDeleterCallbackV2 deleter = nullptr,
+npm error       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+npm error In file included from ../../nan/nan.h:2948:
+npm error ../../nan/nan_scriptorigin.h: In constructor ‘Nan::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>)’:
+npm error ../../nan/nan_scriptorigin.h:19:55: error: no matching function for call to ‘v8::ScriptOrigin::ScriptOrigin(v8::Isolate*, v8::Local<v8::Value>&)’
+npm error    19 |       v8::ScriptOrigin(v8::Isolate::GetCurrent(), name) {}
+npm error       |                                                       ^
+npm error ../../nan/nan_scriptorigin.h:19:55: note: there are 3 candidates
+npm error In file included from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-script.h:20,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-debug.h:10,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-isolate.h:19,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-snapshot.h:9,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-context.h:15,
+npm error                  from /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8.h:26:
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:13: note: candidate 1: ‘v8::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>, int, int, bool, int, v8::Local<v8::Value>, bool, bool, bool, v8::Local<v8::Data>)’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |             ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:39: note: no known conversion for argument 1 from ‘v8::Isolate*’ to ‘v8::Local<v8::Value>’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |                          ~~~~~~~~~~~~~^~~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 2: ‘constexpr v8::ScriptOrigin::ScriptOrigin(const v8::ScriptOrigin&)’
+npm error    63 | class V8_EXPORT ScriptOrigin {
+npm error       |                 ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 2 provided
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 3: ‘constexpr v8::ScriptOrigin::ScriptOrigin(v8::ScriptOrigin&&)’
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 2 provided
+npm error ../../nan/nan_scriptorigin.h: In constructor ‘Nan::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>, v8::Local<v8::Integer>)’:
+npm error ../../nan/nan_scriptorigin.h:25:52: error: no matching function for call to ‘v8::ScriptOrigin::ScriptOrigin(v8::Isolate*, v8::Local<v8::Value>&, int)’
+npm error    25 |                    , To<int32_t>(line).FromMaybe(0)) {}
+npm error       |                                                    ^
+npm error ../../nan/nan_scriptorigin.h:25:52: note: there are 3 candidates
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:13: note: candidate 1: ‘v8::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>, int, int, bool, int, v8::Local<v8::Value>, bool, bool, bool, v8::Local<v8::Data>)’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |             ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:39: note: no known conversion for argument 1 from ‘v8::Isolate*’ to ‘v8::Local<v8::Value>’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |                          ~~~~~~~~~~~~~^~~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 2: ‘constexpr v8::ScriptOrigin::ScriptOrigin(const v8::ScriptOrigin&)’
+npm error    63 | class V8_EXPORT ScriptOrigin {
+npm error       |                 ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 3 provided
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 3: ‘constexpr v8::ScriptOrigin::ScriptOrigin(v8::ScriptOrigin&&)’
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 3 provided
+npm error ../../nan/nan_scriptorigin.h: In constructor ‘Nan::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>, v8::Local<v8::Integer>, v8::Local<v8::Integer>)’:
+npm error ../../nan/nan_scriptorigin.h:33:54: error: no matching function for call to ‘v8::ScriptOrigin::ScriptOrigin(v8::Isolate*, v8::Local<v8::Value>&, int, int)’
+npm error    33 |                    , To<int32_t>(column).FromMaybe(0)) {}
+npm error       |                                                      ^
+npm error ../../nan/nan_scriptorigin.h:33:54: note: there are 3 candidates
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:13: note: candidate 1: ‘v8::ScriptOrigin::ScriptOrigin(v8::Local<v8::Value>, int, int, bool, int, v8::Local<v8::Value>, bool, bool, bool, v8::Local<v8::Data>)’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |             ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:65:39: note: no known conversion for argument 1 from ‘v8::Isolate*’ to ‘v8::Local<v8::Value>’
+npm error    65 |   V8_INLINE ScriptOrigin(Local<Value> resource_name,
+npm error       |                          ~~~~~~~~~~~~~^~~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 2: ‘constexpr v8::ScriptOrigin::ScriptOrigin(const v8::ScriptOrigin&)’
+npm error    63 | class V8_EXPORT ScriptOrigin {
+npm error       |                 ^~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 4 provided
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate 3: ‘constexpr v8::ScriptOrigin::ScriptOrigin(v8::ScriptOrigin&&)’
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/v8-message.h:63:17: note: candidate expects 1 argument, 4 provided
+npm error ../src/libxmljs.cc: At global scope:
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:1278:7: warning: cast between incompatible function types from ‘void (*)(Nan::ADDON_REGISTER_FUNCTION_ARGS_TYPE)’ {aka ‘void (*)(v8::Local<v8::Object>)’} to ‘node::addon_register_func’ {aka ‘void (*)(v8::Local<v8::Object>, v8::Local<v8::Value>, void*)’} [-Wcast-function-type]
+npm error  1278 |       (node::addon_register_func) (regfunc),                          \
+npm error       |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+npm error /home/dmz-server/.cache/node-gyp/24.13.1/include/node/node.h:1312:3: note: in expansion of macro ‘NODE_MODULE_X’
+npm error  1312 |   NODE_MODULE_X(modname, regfunc, NULL, 0)  // NOLINT (readability/null_usage)
+npm error       |   ^~~~~~~~~~~~~
+npm error ../src/libxmljs.cc:250:1: note: in expansion of macro ‘NODE_MODULE’
+npm error   250 | NODE_MODULE(xmljs, init)
+npm error       | ^~~~~~~~~~~
+npm error make: *** [xmljs.target.mk:172: Release/obj.target/xmljs/src/libxmljs.o] Error 1
+npm error gyp ERR! build error 
+npm error gyp ERR! stack Error: `make` failed with exit code: 2
+npm error gyp ERR! stack at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:219:23)
+npm error gyp ERR! System Linux 6.17.0-14-generic
+npm error gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "build" "--fallback-to-build" "--loglevel=http" "--module=/opt/app/legacy-report/node_modules/libxmljs2/build/Release/xmljs.node" "--module_name=xmljs" "--module_path=/opt/app/legacy-report/node_modules/libxmljs2/build/Release" "--napi_version=10" "--node_abi_napi=napi" "--napi_build_version=0" "--node_napi_label=node-v137"
+npm error gyp ERR! cwd /opt/app/legacy-report/node_modules/libxmljs2
+npm error gyp ERR! node -v v24.13.1
+npm error gyp ERR! node-gyp -v v12.1.0
+npm error gyp ERR! not ok 
+npm error node-pre-gyp ERR! build error 
+npm error node-pre-gyp ERR! stack Error: Failed to execute '/usr/bin/node /usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js build --fallback-to-build --loglevel=http --module=/opt/app/legacy-report/node_modules/libxmljs2/build/Release/xmljs.node --module_name=xmljs --module_path=/opt/app/legacy-report/node_modules/libxmljs2/build/Release --napi_version=10 --node_abi_napi=napi --napi_build_version=0 --node_napi_label=node-v137' (1)
+npm error node-pre-gyp ERR! stack     at ChildProcess.<anonymous> (/opt/app/legacy-report/node_modules/@mapbox/node-pre-gyp/lib/util/compile.js:89:23)
+npm error node-pre-gyp ERR! stack     at ChildProcess.emit (node:events:508:28)
+npm error node-pre-gyp ERR! stack     at maybeClose (node:internal/child_process:1101:16)
+npm error node-pre-gyp ERR! stack     at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+npm error node-pre-gyp ERR! System Linux 6.17.0-14-generic
+npm error node-pre-gyp ERR! command "/usr/bin/node" "/opt/app/legacy-report/node_modules/.bin/node-pre-gyp" "install" "--fallback-to-build" "--loglevel" "http"
+npm error node-pre-gyp ERR! cwd /opt/app/legacy-report/node_modules/libxmljs2
+npm error node-pre-gyp ERR! node -v v24.13.1
+npm error node-pre-gyp ERR! node-pre-gyp -v v1.0.11
+npm error node-pre-gyp ERR! not ok
+npm error A complete log of this run can be found in: /home/dmz-server/.npm/_logs/2026-03-17T11_13_26_129Z-debug-0.log

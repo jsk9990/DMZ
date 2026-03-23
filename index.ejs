@@ -1,0 +1,180 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!--
+        LegacyReportEngine v2.1.3 | Internal Document Management System
+        Copyright (c) 2024 Legacy Corp. — All rights reserved
+        Sistema di gestione documentale interno — accesso riservato
+        Panel di gestione: /management/dashboard
+    -->
+</head>
+<body>
+
+<div class="system-bar">
+    <div>
+        <span class="status-dot"></span>
+        <span>SISTEMA OPERATIVO</span>
+        &nbsp;|&nbsp;
+        <span>Apache/2.2.31 (Ubuntu)</span>
+        &nbsp;|&nbsp;
+        <span>LegacyReportEngine/2.1.3</span>
+    </div>
+    <div class="system-bar-right">
+        <span id="sys-uptime" class="text-mono">UP 5d 00:00</span>
+        <span id="sys-clock" class="text-mono">00:00:00</span>
+    </div>
+</div>
+
+<nav class="main-nav">
+    <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">LR</div>
+        <div>
+            <div class="nav-brand-text">LegacyReport</div>
+            <span class="nav-brand-version">v2.1.3</span>
+        </div>
+    </a>
+    <a href="/"        class="nav-link">Dashboard</a>
+    <a href="/reports" class="nav-link">Import XML</a>
+    <a href="/login"   class="nav-link">Accesso</a>
+</nav>
+
+<div class="page-wrapper">
+
+    <div class="page-header">
+        <div class="page-header-left">
+            <div class="page-label">// Panoramica sistema</div>
+            <h1 class="page-title">Report Dashboard</h1>
+            <p class="page-subtitle">Sistema di gestione documentale interno — Legacy Corp.</p>
+        </div>
+        <div class="flex gap-8">
+            <span class="badge badge-green">
+                <span>●</span> Online
+            </span>
+            <span class="badge badge-amber">
+                PRODUZIONE
+            </span>
+        </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="grid-3 mb-24">
+        <div class="stat-card">
+            <div class="stat-label">// Report elaborati</div>
+            <div class="stat-value" data-target="4821">0</div>
+            <div class="stat-unit">documenti totali</div>
+        </div>
+        <div class="stat-card amber">
+            <div class="stat-label">// In attesa</div>
+            <div class="stat-value" data-target="17">0</div>
+            <div class="stat-unit">in coda</div>
+        </div>
+        <div class="stat-card blue">
+            <div class="stat-label">// Utenti attivi</div>
+            <div class="stat-value" data-target="3">0</div>
+            <div class="stat-unit">sessioni aperte</div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+
+        <!-- Report recenti -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-header-title">Report recenti</span>
+                <span class="card-header-badge">ultimi 7 giorni</span>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titolo</th>
+                        <th>Autore</th>
+                        <th>Stato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#4821</td>
+                        <td>Bilancio Q4 2023</td>
+                        <td>M.Rossi</td>
+                        <td><span class="badge badge-green">OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>#4820</td>
+                        <td>Analisi Mercato EMEA</td>
+                        <td>Sistema</td>
+                        <td><span class="badge badge-green">OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>#4819</td>
+                        <td>Report HR Gennaio</td>
+                        <td>A.Bianchi</td>
+                        <td><span class="badge badge-amber">PEND</span></td>
+                    </tr>
+                    <tr>
+                        <td>#4818</td>
+                        <td>Audit Sicurezza</td>
+                        <td>IT Dept.</td>
+                        <td><span class="badge badge-amber">PEND</span></td>
+                    </tr>
+                    <tr>
+                        <td>#4817</td>
+                        <td>Contratto Fornitura</td>
+                        <td>P.Verdi</td>
+                        <td><span class="badge badge-red">ERR</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Log sistema -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-header-title">System log</span>
+                <span class="card-header-badge">live</span>
+            </div>
+            <div class="card-body" style="padding:0">
+                <div class="terminal" style="height:260px; overflow-y:auto; font-size:11px">
+[2024-01-15 09:22:11] INFO  Server avviato su 0.0.0.0:3000
+[2024-01-15 09:22:11] INFO  JWT engine inizializzato (RS256)
+[2024-01-15 09:22:12] INFO  Connessione DB: 10.0.0.5:5432 ... OK
+[2024-01-15 09:31:04] INFO  POST /reports/upload 200 142ms
+[2024-01-15 09:31:04] INFO  Report #4821 importato con successo
+[2024-01-15 10:05:17] INFO  GET  /reports 200 8ms
+[2024-01-15 10:18:33] WARN  POST /reports/upload formato non valido
+[2024-01-15 11:02:45] INFO  POST /api/auth/login 200 55ms
+[2024-01-15 11:02:45] INFO  Token JWT emesso per: guest
+[2024-01-15 14:30:02] INFO  GET  / 200 5ms
+[2024-01-15 14:30:02] INFO  Sessioni attive: 3
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Accesso rapido -->
+    <div class="card mt-24">
+        <div class="card-header">
+            <span class="card-header-title">Accesso rapido</span>
+        </div>
+        <div class="card-body flex gap-8">
+            <a href="/reports" class="btn btn-primary">Importa Report XML</a>
+            <a href="/login"   class="btn btn-secondary">Accesso Utente</a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="main-footer">
+    <span>LegacyReportEngine v2.1.3 &copy; 2024 Legacy Corp.</span>
+    <span>Server: Apache/2.2.31 (Ubuntu) | Node.js runtime</span>
+</footer>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
