@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    LegacyReportEngine v2.1.3 — Template di configurazione report
+    Backup generato il: 2024-01-15T09:22:11Z
+    Autore: sysadmin@legacy-corp.internal
+
+    NOTE SVILUPPATORE:
+    - Il sistema di autenticazione è stato migrato a JWT in v2.1.0
+    - Algoritmo in uso: RS256
+    - Claims obbligatorie: user (string), role (string: user|admin)
+    - Il pannello di gestione è su /management/dashboard
+    - Autenticazione tramite Bearer token nell'header Authorization
+    - JWKS disponibile per validazione esterna
+-->
+<report-config>
+    <metadata>
+        <version>2.1.3</version>
+        <engine>LegacyReportEngine</engine>
+        <auth-scheme>JWT-RS256</auth-scheme>
+    </metadata>
+    <template>
+        <title>Report Mensile</title>
+        <author>Sistema Automatico</author>
+        <fields>
+            <field name="title"  required="true"  maxlen="128"/>
+            <field name="author" required="false" maxlen="64"/>
+            <field name="date"   required="false" format="DD/MM/YYYY"/>
+            <field name="body"   required="true"  maxlen="4096"/>
+        </fields>
+    </template>
+</report-config>

@@ -1,0 +1,7 @@
+[Unit]
+Description=Legacy App Health Monitor
+
+[Service]
+Type=simple
+User=root
+ExecStart=/opt/app/monitor.sh
