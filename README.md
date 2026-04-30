@@ -53,10 +53,10 @@ La scalata ai privilegi massimi sfrutta il principio del "Least Privilege" imple
 * L'attaccante sovrascrive lo script iniettando istruzioni per copiare la `/bin/bash` in locale e assegnarle il bit **SUID**. Riavviando il servizio, la trappola scatta ed elargisce una shell `root`.
 
 ### Fase 6: Post-Exploitation e Network Discovery
-Ottenuto l'accesso `root`, l'attaccante raccoglie gli "Artifacts" per pianificare il movimento laterale. Attraverso l'ispezione di file ambientali (`.env`), script di debug dimenticati (`test_backend.py`) e la cronologia dell'amministratore (`.bash_history`), scopre:
-* La topologia della rete interna isolata (`10.0.0.x`).
-* Il Target Intermedio (**Legacy-Data-Processor**: `10.0.0.5:5000`).
-* Il vettore di attacco futuro: l'utilizzo di serializzazione nativa Python (`pickle` e `base64`) per la trasmissione dati inter-server (Insecure Deserialization).
+Ottenuto l'accesso `root`, l'attaccante raccoglie gli "Artifacts" per pianificare il movimento laterale. Attraverso l'ispezione di file ambientali (`.config`), e  analisi del codice scopre:
+* La topologia della rete interna isolata (`10.10.10.x`).
+* Il Target Intermedio (**Legacy-Data-Processor**: `10.10.10.20:5000`).
+* Il meccanismo di trasmissione dati inter-server: i dati vengono inviati dalla DMZ al backend sotto forma di oggetti JSON codificati in (`base64`). L'assenza di controlli crittografici su questo canale fiduciario apre la strada all'identificazione di una vulnerabilità di **Insecure Deserialization** sul parser del backend `(che si scoprirà essere vulnerabile tramite parsing YAML)`.
 
 ---
 
