@@ -67,8 +67,8 @@ const crypto = require('crypto');
                 'JWT_ALGORITHM=RS256',
                 `JWT_PUBLIC_KEY_PATH=${crtPath}`,
                 `JWT_PRIVATE_KEY_PATH=${privPath}`,
-                'INTERNAL_NETWORK_HOST= da cambiare dopo per proseguo',
-                'INTERNAL_NETWORK_PORT= discorso sopra',
+                'INTERNAL_NETWORK_HOST= 10.10.10.20',
+                'INTERNAL_NETWORK_PORT= 5000',
                 'APP_ENV=production',
                 'DEBUG=false',
             ].join('\n'), { mode: 0o600 });
