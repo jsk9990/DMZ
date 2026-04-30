@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 — Accesso negato</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="system-bar">
+    <div>
+        <span style="color:var(--accent-red)">●</span>
+        &nbsp;ACCESSO NEGATO
+        &nbsp;|&nbsp;
+        <span>LegacyReportEngine/2.1.3</span>
+    </div>
+    <div class="system-bar-right">
+        <span id="sys-clock" class="text-mono">00:00:00</span>
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <div class="error-page">
+        <div class="error-code">403</div>
+        <div class="error-message">Risorsa non disponibile</div>
+        <p style="color:var(--text-dim); font-family:var(--mono); font-size:12px; max-width:360px; text-align:center">
+            <%= message || 'Non hai i permessi necessari per accedere a questa risorsa.' %>
+        </p>
+        <div class="flex gap-8 mt-24">
+            <a href="/"      class="btn btn-secondary">← Dashboard</a>
+            <a href="/login" class="btn btn-primary">Accedi</a>
+        </div>
+    </div>
+</div>
+
+<footer class="main-footer">
+    <span>LegacyReportEngine v2.1.3</span>
+    <span>Apache/2.2.31 (Ubuntu)</span>
+</footer>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
